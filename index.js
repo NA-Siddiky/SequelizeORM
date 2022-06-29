@@ -25,7 +25,6 @@ const sequelize = new Sequelize('to_do_sql', 'root', '12345678', {
     }
 })();
 
-
 // app.get("/", (req, res) => {
 //     res.send("this is working server is connected");
 // })
@@ -34,11 +33,6 @@ const sequelize = new Sequelize('to_do_sql', 'root', '12345678', {
 const blog_table = sequelize.define(
     "blog_table",
     {
-        // id: {
-        //     type: Sequelize.INTEGER,
-        //     primaryKey: true,
-        //     autoIncrement: true
-        // },
         title: Sequelize.STRING,
         desc: Sequelize.TEXT,
     },
