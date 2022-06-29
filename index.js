@@ -10,20 +10,11 @@ const port = 5050;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//mysql connection
 const sequelize = new Sequelize('to_do_sql', 'root', '12345678', {
     host: 'localhost',
-    // port: 3306,
-    dialect: 'mssql'
+    dialect: 'mysql'
 });
-
-// sequelize
-//     .authenticate()
-//     .then(() => {
-//         console.log('successfully connected sql');
-//     })
-//     .catch((err) => {
-//         console.log(err, 'this has a error');
-//     })
 
 (async () => {
     try {
