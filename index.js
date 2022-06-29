@@ -81,10 +81,19 @@ app.put('/:id', (req, res) => {
     res.redirect('/');
 })
 
+//delete data on table(delete)
+app.delete('/:id', (req, res) => {
+    blog_table.destroy(
+        {
+            where: {
+                id: req.params.id,
+            }
+        }
+    )
+    res.redirect('/');
+})
 
-
-
-
+//running server
 app.listen(port, () => {
     console.log(`server is running on http://localhost:${port}`);
 })
