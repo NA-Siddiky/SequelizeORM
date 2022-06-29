@@ -26,21 +26,26 @@ const sequelize = new Sequelize('to_do_sql', 'root', '12345678', {
 })();
 
 
-app.get("/", (req, res) => {
-    res.send("this is working server is connected");
-})
+// app.get("/", (req, res) => {
+//     res.send("this is working server is connected");
+// })
 
 //creating db table(create-C)
 const blog_table = sequelize.define(
     "blog_table",
     {
+        // id: {
+        //     type: Sequelize.INTEGER,
+        //     primaryKey: true,
+        //     autoIncrement: true
+        // },
         title: Sequelize.STRING,
         desc: Sequelize.TEXT,
     },
     { tableName: "blog_table" }
 );
 
-blog_table.sync({ force: true });
+blog_table.sync();
 
 //post data on table(post)
 app.post('/', async (req, res) => {
@@ -52,6 +57,28 @@ app.post('/', async (req, res) => {
     })
     await saveBlog.save();
     res.send("data post successfully");
+})
+
+//get all data from table(read)
+app.get('/', async (req, res) => {
+    const alldata = await blog_table.findAll();
+    res.send(alldata);
+})
+
+//update data on table(put)
+app.put('/:id', (req, res) => {
+    const data = req.body.data;
+    blog_table.update(
+        {
+            desc: data,
+        },
+        {
+            where: {
+                id: req.params.id,
+            }
+        }
+    )
+    res.redirect('/');
 })
 
 
