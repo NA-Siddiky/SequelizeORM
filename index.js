@@ -54,6 +54,10 @@ app.post('/', async (req, res) => {
     res.send("data post successfully");
 })
 
+
+
+
+
 app.listen(port, () => {
     console.log(`server is running on http://localhost:${port}`);
 })
