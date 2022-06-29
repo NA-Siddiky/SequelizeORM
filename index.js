@@ -16,6 +16,19 @@ const sequelize = new Sequelize('to_do_sql', 'root', '12345678', {
     dialect: 'mysql'
 });
 
+//creating db table
+const blog_table = sequelize.define(
+    "blog_table",
+    {
+        title: Sequelize.STRING,
+        desc: Sequelize.TEXT,
+    },
+    { tableName: "blog_table" }
+);
+
+blog_table.sync({ force: true });
+
+
 (async () => {
     try {
         await sequelize.authenticate();
